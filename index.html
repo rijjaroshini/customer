@@ -6,50 +6,75 @@
     <title>Work Shop Studio | Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        /* (آپ کا پرانا CSS یہاں رہے گا، میں نے اسے مختصر رکھا ہے) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background-color: #050505; color: #fff; height: 100vh; overflow: hidden; display: flex; flex-direction: column; position: relative; }
-        header { padding: 35px 20px; z-index: 100; text-align: center; border-bottom: 2px solid #1a1a1a; position: relative; overflow: hidden; background: linear-gradient(135deg, #0a0a0a 0%, #101010 40%, #004080 70%, #0a0a0a 100%); background-size: 400% 400%; animation: gradientBG 10s ease infinite; }
+
+        header {
+            padding: 35px 20px; z-index: 100; text-align: center; border-bottom: 2px solid #1a1a1a;
+            position: relative; overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #101010 40%, #004080 70%, #0a0a0a 100%);
+            background-size: 400% 400%; animation: gradientBG 10s ease infinite;
+        }
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
         .star { position: absolute; background-color: #fff; border-radius: 50%; animation: twinkle 2s infinite ease-in-out; opacity: 0; z-index: 90; }
         @keyframes twinkle { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 0.8; transform: scale(1); } 100% { opacity: 0; transform: scale(0.5); } }
         .star-1 { width: 2px; height: 2px; top: 20%; left: 15%; animation-delay: 0.2s; }
         .star-2 { width: 3px; height: 3px; top: 60%; left: 25%; animation-delay: 0.5s; }
+
         .studio-title { font-family: 'Oswald', sans-serif; font-size: 2.2rem; letter-spacing: 5px; text-transform: uppercase; color: #fff; position: relative; z-index: 100; }
+
         .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; background: radial-gradient(circle at center, #101010 0%, #050505 100%); }
         .line { position: absolute; bottom: -100px; width: 1px; background: linear-gradient(to top, transparent, #007bff, transparent); animation: moveUp 10s linear infinite; opacity: 0.2; box-shadow: 0 0 5px #007bff; }
         @keyframes moveUp { 0% { transform: translateY(0); opacity: 0; } 50% { opacity: 0.6; } 100% { transform: translateY(-130vh); opacity: 0; } }
+
         .description { padding: 20px; text-align: center; z-index: 50; margin-top: 40px; flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
         .description h2 { color: #007bff; font-size: 1.3rem; margin-bottom: 10px; text-shadow: 0 2px 5px rgba(0,123,255,0.4); }
         .description p { font-size: 0.95rem; color: #b0b0b0; line-height: 1.8; max-width: 320px; margin: 0 auto; }
+
         .bottom-nav { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: center; gap: 30px; z-index: 2000; }
-        .fab { width: 65px; height: 65px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-size: 26px; cursor: pointer; box-shadow: 0 8px 25px rgba(0,0,0,0.6); }
+        .fab { width: 65px; height: 65px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-size: 26px; cursor: pointer; box-shadow: 0 8px 25px rgba(0,0,0,0.6); transition: 0.3s; }
         .file-fab { background: #007bff; }
         .chat-fab { background: #075e54; }
+
         .labels-center { display: flex; flex-direction: column; gap: 6px; align-items: center; }
         .tag { color: white; padding: 5px 14px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.4); animation: tagBounce 2.5s infinite; }
         .tag-blue { background: #007bff; }
         .tag-green { background: #075e54; }
         @keyframes tagBounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-7px); } 60% { transform: translateY(-4px); } }
+
         .win { display: none; position: fixed; bottom: 105px; left: 50%; transform: translateX(-50%); width: 350px; height: 480px; background: #0f0f0f; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.7); z-index: 3000; flex-direction: column; color: #fff; border: 1px solid #2a2a2a; }
         @media (max-width: 400px) { .win { width: 94%; } }
         .win-header { padding: 18px; color: white; font-weight: bold; text-align: center; position: relative; }
         .close-btn { position: absolute; right: 18px; cursor: pointer; }
+        
         #msg-box { flex: 1; overflow-y: auto; padding: 18px; background: #080808; display: flex; flex-direction: column; gap: 12px; }
         .bubble { padding: 10px 16px; border-radius: 12px; font-size: 13.5px; max-width: 80%; }
         .sent { align-self: flex-end; background: #007bff; color: #fff; border-bottom-right-radius: 2px; }
         .received { align-self: flex-start; background: #202020; color: #fff; border-bottom-left-radius: 2px; }
+
         .chat-input { padding: 12px; background: #0f0f0f; display: flex; gap: 10px; border-top: 1px solid #2a2a2a; }
         textarea { flex: 1; border-radius: 25px; border: 1px solid #3a3a3a; padding: 10px 18px; height: 44px; background: #050505; color: #fff; outline: none; resize: none; }
         .send-btn { background: #075e54; color: white; border: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; }
-        #name-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3100; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
-        #user-name-input { width: 80%; padding: 12px; border-radius: 10px; border: 1px solid #007bff; background: #111; color: #fff; margin-bottom: 15px; text-align: center; }
+
+        /* Registration Overlay */
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 4000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 25px; text-align: center; }
+        .overlay input { width: 90%; padding: 12px; border-radius: 10px; border: 1px solid #007bff; background: #111; color: #fff; margin-bottom: 15px; text-align: center; font-size: 14px; }
+        .overlay button { background: #007bff; color: white; border: none; padding: 12px 40px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
         .file-body { flex: 1; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .drop-zone { border: 2px dashed #007bff; padding: 35px 20px; border-radius: 15px; width: 100%; cursor: pointer; text-align: center; background: #080808; }
         .up-btn { background: #007bff; color: white; border: none; padding: 14px; width: 100%; border-radius: 8px; font-weight: bold; margin-top: 25px; cursor: pointer; }
     </style>
 </head>
 <body>
+
+    <div id="reg-overlay" class="overlay" style="display: none;">
+        <h2 style="color: #007bff; margin-bottom: 20px;">Studio Registration</h2>
+        <input type="text" id="reg-studio" placeholder="Studio Name (e.g. Ali Studio)">
+        <input type="tel" id="reg-phone" placeholder="Phone Number (e.g. 03xx-xxxxxxx)">
+        <button onclick="saveStudioData()">Register & Continue</button>
+    </div>
 
     <div class="bg-animation" id="bgLines"></div>
 
@@ -61,16 +86,16 @@
 
     <div class="description">
         <h2>Premium Editing & Sizing</h2>
-        <p>Specialized photo editing and custom sizing exclusively for professional studios. High quality, fast delivery.</p>
+        <p>Specialized photo editing and custom sizing exclusively for professional studios.</p>
     </div>
 
     <div class="bottom-nav">
-        <div class="fab file-fab" onclick="openWin('file-win')">📎</div>
+        <div class="fab file-fab" onclick="checkRegAndOpen('file-win')">📎</div>
         <div class="labels-center">
             <div class="tag tag-blue">Send Files</div>
             <div class="tag tag-green">Live Chat</div>
         </div>
-        <div class="fab chat-fab" onclick="openWin('chat-win')">💬</div>
+        <div class="fab chat-fab" onclick="checkRegAndOpen('chat-win')">💬</div>
     </div>
 
     <div class="win" id="file-win">
@@ -87,11 +112,6 @@
 
     <div class="win" id="chat-win">
         <div class="win-header" style="background: #075e54;">Support Chat <span class="close-btn" onclick="closeAll()">✕</span></div>
-        <div id="name-overlay">
-            <p style="margin-bottom: 10px;">Enter your name to start chat</p>
-            <input type="text" id="user-name-input" placeholder="Your Name">
-            <button onclick="startChat()" style="background:#075e54; color:white; border:none; padding:10px 30px; border-radius:5px; cursor:pointer;">Start Chat</button>
-        </div>
         <div id="msg-box"></div>
         <div class="chat-input">
             <textarea id="chat-text" placeholder="Type message..."></textarea>
@@ -109,9 +129,9 @@
         const TG_TOKEN = "8623511731:AAEQp1zW_9y4vgYZHcZENsfLCHmrmtNh6wY";
         const TG_ID = "8234464652";
 
-        let myName = localStorage.getItem('user_chat_name') || "";
+        let studioInfo = JSON.parse(localStorage.getItem('workshop_studio_info')) || null;
 
-        // Background Animation Lines
+        // Background Logic
         const bg = document.getElementById('bgLines');
         for (let i = 0; i < 20; i++) {
             const line = document.createElement('div');
@@ -122,44 +142,46 @@
             bg.appendChild(line);
         }
 
+        function checkRegAndOpen(id) {
+            if (!studioInfo) {
+                document.getElementById('reg-overlay').style.display = 'flex';
+                window.targetWin = id;
+            } else {
+                openWin(id);
+            }
+        }
+
+        function saveStudioData() {
+            const name = document.getElementById('reg-studio').value.trim();
+            const phone = document.getElementById('reg-phone').value.trim();
+            if (!name || !phone) return alert("Please enter both Name and Phone!");
+            
+            studioInfo = { name: name, phone: phone };
+            localStorage.setItem('workshop_studio_info', JSON.stringify(studioInfo));
+            document.getElementById('reg-overlay').style.display = 'none';
+            if (window.targetWin) openWin(window.targetWin);
+        }
+
         function openWin(id) {
             closeAll();
             document.getElementById(id).style.display = 'flex';
-            if(id === 'chat-win' && myName) {
-                document.getElementById('name-overlay').style.display = 'none';
-                loadChat();
-            }
+            if (id === 'chat-win') loadChat();
         }
         function closeAll() { document.querySelectorAll('.win').forEach(w => w.style.display = 'none'); }
 
-        function startChat() {
-            const name = document.getElementById('user-name-input').value.trim();
-            if(!name) return alert("Enter your name!");
-            myName = name;
-            localStorage.setItem('user_chat_name', myName);
-            document.getElementById('name-overlay').style.display = 'none';
-            loadChat();
-        }
-
-        // --- FIXED SEND MESSAGE FUNCTION ---
         async function sendMsg() {
             const input = document.getElementById('chat-text');
             const text = input.value.trim();
-            if(!text || !myName) return;
+            if(!text || !studioInfo) return;
 
-            // 1. Send to Firebase (For Live Chat View)
-            db.ref('public_chat').push({ text: text, name: myName, time: Date.now() });
-
-            // 2. Send to Telegram (For Admin Alert)
-            const tgMsg = `💬 *New Message From Workshop Studio*\n\n👤 *Name:* ${myName}\n📝 *Message:* ${text}`;
-            try {
-                await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: TG_ID, text: tgMsg, parse_mode: "Markdown" })
-                });
-            } catch(e) { console.error("TG Error", e); }
-
+            db.ref('public_chat').push({ text: text, name: studioInfo.name, time: Date.now() });
+            
+            const tgMsg = `💬 *Message from Workshop Studio*\n👤 *Studio:* ${studioInfo.name}\n📞 *Phone:* ${studioInfo.phone}\n📝 *Msg:* ${text}`;
+            fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TG_ID, text: tgMsg, parse_mode: "Markdown" })
+            });
             input.value = '';
         }
 
@@ -169,8 +191,8 @@
                 box.innerHTML = '';
                 snap.forEach(c => {
                     const d = c.val();
-                    if(d.name === myName || d.name === "Admin") {
-                        const isMe = d.name === myName;
+                    if(d.name === studioInfo.name || d.name === "Admin") {
+                        const isMe = d.name === studioInfo.name;
                         box.innerHTML += `<div class="bubble ${isMe ? 'sent' : 'received'}">${d.text}</div>`;
                     }
                 });
@@ -187,22 +209,26 @@
             const input = document.getElementById('file-input');
             const status = document.getElementById('up-status');
             if(input.files.length === 0) return alert("Select photos!");
-            status.innerText = "Uploading... ⏳";
             
-            // Send Alert to Telegram first
+            status.innerText = "Sending... ⏳";
+            const orderID = "ORD-" + Math.floor(Math.random() * 9000 + 1000);
+
+            // Alert Message
+            const alertText = `📦 *NEW ORDER RECEIVED*\n👤 *Studio:* ${studioInfo.name}\n📞 *Phone:* ${studioInfo.phone}\n🆔 *Order ID:* ${orderID}\n🖼️ *Total:* ${input.files.length}`;
             await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: TG_ID, text: `📁 *New Photos Received*\n👤 *From:* ${myName || "Customer"}`, parse_mode: "Markdown" })
+                body: JSON.stringify({ chat_id: TG_ID, text: alertText, parse_mode: "Markdown" })
             });
 
             for (let i = 0; i < input.files.length; i++) {
                 const fd = new FormData();
                 fd.append('chat_id', TG_ID);
                 fd.append('document', input.files[i]);
+                fd.append('caption', `Studio: ${studioInfo.name} | ID: ${orderID} | Ph: ${studioInfo.phone} | Photo: ${i+1}/${input.files.length}`);
                 await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendDocument`, { method: 'POST', body: fd });
             }
-            status.innerText = "All Sent Successfully! ✅";
+            status.innerText = "Done! ✅ ID: " + orderID;
         }
     </script>
 </body>
